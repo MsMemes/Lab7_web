@@ -1,0 +1,23 @@
+{
+  "name": "bookmarks-app",
+  "version": "1.0.0",
+  "description": "Laboratorio 7 ",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MsMemes/Lab7_web.git"
+  },
+  "author": "Julia Jimenez",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MsMemes/Lab7_web/issues"
+  },
+  "homepage": "https://github.com/MsMemes/Lab7_web#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
