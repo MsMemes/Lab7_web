@@ -1,17 +1,19 @@
 const express = require( 'express' );
+const uuidv4 = require("uuid/v4");
 
 const app = express();
 
+
 let bookmarks = [
     {
-        id : 1234,
+        id : uuidv4(),
         title : "The Name of the Wind",
         description : "Told in Kvothe's own voice, this is the tale of the magically gifted young man who grows to be the most notorious wizard his world has ever seen.",
         url : "www.thenameofthewind.com",
         rating : 4.54
     },
     {
-        id : 1235,
+        id : uuidv4(),
         title : "The Ways of Kings",
         description : "The age before the Heralds abandoned us and the Knights Radiant turned against us. A time when there was still magic in the world and honor in the hearts of men.",
         url : "www.thewaysofkings.com",
@@ -23,6 +25,7 @@ app.get( '/bookmarks', ( req, res ) => {
     console.log( "Getting all bookmarks" );
 
     return res.status( 200 ).json( bookmarks );
+    console.log(id());
 });
 
 app.get( '/bookmark', ( req, res ) => {
