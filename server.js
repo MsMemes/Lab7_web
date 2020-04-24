@@ -25,6 +25,36 @@ app.get( '/bookmarks', ( req, res ) => {
     return res.status( 200 ).json( bookmarks );
 });
 
+app.get( '/bookmark', ( req, res ) => {
+    console.log( 'Getting bookmark by title' );
+
+    console.log( req.query );
+
+    let title = req.query.title;
+
+    console.log(title);
+
+    if ( !title ){
+        res.statusMessage = "Please send the title as parameter";
+        return res.status( 406 ).end();
+    }
+
+    let result = bookmarks.find( ( bookmark ) => {
+        if( bookmark.title === title){
+            return bookmark;
+        }
+    });
+
+    console.log(result);
+
+    if( !result ){
+        res.statusMessage = "This title was not found";
+        return res.status( 404 ).end();
+    }
+
+    return res.status( 200 ).json(result);
+});
+
 app.listen( 8080, () => {
     console.log( 'This server is running on port 8080' );
 });
