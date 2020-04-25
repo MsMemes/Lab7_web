@@ -76,8 +76,6 @@ app.get( '/bookmark', ( req, res ) => {
         }
     });
 
-    console.log(result);
-
     if( !result ){
         res.statusMessage = "This title was not found";
         return res.status( 404 ).end();
@@ -114,7 +112,6 @@ app.post( '/bookmarks', jsonParser, ( req, res ) =>{
 
 app.delete('/bookmark/:id', (req, res) =>{
 
-    console.log( req.params );
     let id = req.params.id;
 
     console.log(id);
