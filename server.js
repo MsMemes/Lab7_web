@@ -87,6 +87,33 @@ app.post( '/bookmarks', jsonParser, ( req, res ) =>{
     return res.status( 201 ).json( newBookmark );
 });
 
+app.delete('/bookmark/:id', (req, res) =>{
+
+    console.log( req.params );
+    let id = req.params.id;
+
+    console.log(id);
+
+    if( !id ){
+        res.statusMessage = "Please send the 'id' to delete a bookmark";
+        return res.status( 406 ).end();
+    }
+
+    let itemToRemove = bookmarks.findIndex( ( bookmark ) => {
+        if( bookmark.id === id ){
+            return true;
+        }
+    });
+
+    if( itemToRemove < 0 ){
+        res.statusMessage = "That 'id' was not found in the list of students.";
+        return res.status( 404 ).end();
+    }
+
+    bookmarks.splice( itemToRemove, 1 );
+    return res.status( 200 ).end();
+});
+
 app.listen( 8080, () => {
     console.log( 'This server is running on port 8080' );
 });
