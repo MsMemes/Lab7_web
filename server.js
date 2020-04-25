@@ -1,7 +1,9 @@
 const express = require( 'express' );
 const uuidv4 = require("uuid/v4");
+const bodyParser = require('body-parser');
 
 const app = express();
+const jsonParser = bodyParser.json();
 
 
 let bookmarks = [
@@ -56,6 +58,33 @@ app.get( '/bookmark', ( req, res ) => {
     }
 
     return res.status( 200 ).json(result);
+});
+
+app.post( '/bookmarks', jsonParser, ( req, res ) =>{
+    console.log('Adding a bookmark');
+    
+    let title = req.body.title;
+    let description = req.body.description;
+    let url = req.body.url;
+    let rating = req.body.rating;
+
+    if( !title || !description || !url || !rating ){
+        res.statusMessage = "Please send all the fields";
+        return res.status( 406 ).end();
+    }
+    
+    bookmarks.find( (bookmark) => {
+        if(bookmark.title === title){
+            res.statusMessage = "This bookmark already exist";
+            return res.status( 409 ).end();
+        }
+    });
+
+    let id = uuidv4();
+    let newBookmark = { id, title, description, url, rating}
+    bookmarks.push( newBookmark );
+
+    return res.status( 201 ).json( newBookmark );
 });
 
 app.listen( 8080, () => {
