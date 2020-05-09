@@ -7,8 +7,19 @@ const app = express();
 const jsonParser = bodyParser.json();
 const TOKEN = "2abbf7c3-245b-404f-9473-ade729ed4653";
 const { Bookmarks } = require( './bookmarkModel');
-
+app.use( express.static( "public" ) );
 app.use( morgan( 'dev' ) );
+
+function cors(req, res, next) {
+    res.header("Access-Control-Allow-Origin", '*');
+    res.header("Access-Control-Allow-Credentials", true);
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+    res.header("Access-Control-Allow-Headers", 'Origin,X-Requested-With,Content-Type,Accept,Authorization,content-type,application/json');
+    if (req.method === "OPTIONS") {
+        return res.send(204);
+    }
+    next();
+}
 
 function validate( req, res, next ){
     
@@ -37,6 +48,8 @@ function validate( req, res, next ){
 }
 
 app.use( validate );
+app.use( cors );
+
 
 app.get( '/bookmarks', ( req, res ) => {
     Bookmarks
