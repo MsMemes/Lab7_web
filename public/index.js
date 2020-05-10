@@ -1,3 +1,4 @@
+
 const API_TOKEN = "2abbf7c3-245b-404f-9473-ade729ed4653";
 
 function getAllBookmarks() {
@@ -171,6 +172,37 @@ function fetchDeleteBookmark(id) {
 	});
 }
 
+function fetchUpdateBookmark(id, newBookmark) {
+	let urlApi = `http://localhost:8080/bookmark/${id}`;
+
+	let settings = {
+		method : 'PATCH',
+		headers : {
+			Authorization : `Bearer ${API_TOKEN}`,
+			'Content-Type' : 'application/json'
+		},
+		body : JSON.stringify( newBookmark )
+	}
+
+	let results = document.querySelector('.results');
+
+	fetch( urlApi, settings )
+	.then(response => {
+		if(response.ok){
+			return response.json();
+		}
+		else{
+			throw new Error (response.statusText);
+		}
+	})
+	.then(responseJSON => {
+		getAllBookmarks();
+	})
+	.catch( err => {
+		results.innerHTML = err.message;
+	});
+}
+
 function FormAddBookmark() {
 
 	let addBookmarkForm = document.querySelector('.addBookmark');
@@ -214,11 +246,43 @@ function FormDeleteBookmark() {
 	
 }
 
+function FormUpdateBookmark() {
+	let updateForm = document.querySelector(".updateBookmark");
+
+	updateForm.addEventListener( 'submit', (event) => {
+		event.preventDefault();
+		let id = document.getElementById('UbookmarkID').value;
+		let title = document.getElementById('UbookmarkT').value;
+		let description = document.getElementById('UbookmarkD').value;
+		let url = document.getElementById('UbookmarkU').value;
+		let rating = document.getElementById('UbookmarkR').value;
+
+		let newBookmark = {id};
+
+		if(title){
+			newBookmark.title = title;
+		}
+		if(description){
+			newBookmark.description = description;
+		}
+		if(url){
+			newBookmark.url = url;
+		}
+		if(rating){
+			newBookmark.rating = rating;
+		}
+
+		fetchUpdateBookmark(id, newBookmark);
+	})
+	
+}
+
 function init() {
 	getAllBookmarks();
 	FormAddBookmark();
 	FormGetBookmarkTitle();
 	FormDeleteBookmark();
+	FormUpdateBookmark();
 }
 
 init();
