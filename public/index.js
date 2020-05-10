@@ -3,7 +3,7 @@ const API_TOKEN = "2abbf7c3-245b-404f-9473-ade729ed4653";
 
 function getAllBookmarks() {
 
-	let url = 'http://localhost:8080/bookmarks';
+	let url = '/bookmarks';
 	let settings = {
 		method : 'GET',
 		headers : {
@@ -54,7 +54,7 @@ function getAllBookmarks() {
 }
 
 function fetchAddBookmark(title, description, url, rating) {
-	let urlApi = 'http://localhost:8080/bookmarks';
+	let urlApi = '/bookmarks';
 
 	let data = {
 		title : title,
@@ -92,7 +92,7 @@ function fetchAddBookmark(title, description, url, rating) {
 }
 
 function fetchBookmarlTitle(title) {
-	let urlApi = `http://localhost:8080/bookmark?title=${title}`;
+	let urlApi = `/bookmark?title=${title}`;
 
 	let settings = {
 		method : 'GET',
@@ -142,7 +142,7 @@ function fetchBookmarlTitle(title) {
 }
 
 function fetchDeleteBookmark(id) {
-	let url = `http://localhost:8080/bookmark/${id}`;
+	let url = `/bookmark/${id}`;
 
 	let settings = {
 		method : 'DELETE',
@@ -173,7 +173,7 @@ function fetchDeleteBookmark(id) {
 }
 
 function fetchUpdateBookmark(id, newBookmark) {
-	let urlApi = `http://localhost:8080/bookmark/${id}`;
+	let urlApi = `/bookmark/${id}`;
 
 	let settings = {
 		method : 'PATCH',
