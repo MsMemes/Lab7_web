@@ -5,7 +5,10 @@ const morgan = require( 'morgan' );
 const mongoose = require( 'mongoose' );
 const app = express();
 const jsonParser = bodyParser.json();
-const TOKEN = "2abbf7c3-245b-404f-9473-ade729ed4653";
+// const TOKEN = "2abbf7c3-245b-404f-9473-ade729ed4653";
+const {TOKEN} = require('./config');
+const {PORT} = require('./config');
+const {DATABASE_URL} = require('./config');
 const { Bookmarks } = require( './bookmarkModel');
 app.use( express.static( "public" ) );
 app.use( morgan( 'dev' ) );
@@ -170,7 +173,7 @@ app.patch('/bookmark/:id', jsonParser, (req, res ) => {
     });
 })
 
-app.listen( 8080, () => {
+app.listen( PORT, () => {
     console.log( 'This server is running on port 8080' );
 
     const settings = {
@@ -180,7 +183,7 @@ app.listen( 8080, () => {
     };
 
     new Promise( (resolve, reject) => {
-        mongoose.connect( 'mongodb://localhost/bookmarksdb', settings, ( err ) => {
+        mongoose.connect( DATABASE_URL, settings, ( err ) => {
             if ( err ){
                 reject( err );
             }
