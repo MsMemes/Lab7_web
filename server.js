@@ -47,9 +47,8 @@ function validate( req, res, next ){
     next();
 }
 
-app.use( validate );
 app.use( cors );
-
+app.use( validate );
 
 app.get( '/bookmarks', ( req, res ) => {
     Bookmarks
@@ -75,7 +74,6 @@ app.get( '/bookmark', ( req, res ) => {
     Bookmarks
     .getBookmark(title)
     .then( titleBookmark => {
-        console.log(titleBookmark);
         if(titleBookmark.length > 0){
             return res.status( 200 ).json(titleBookmark);
         }
@@ -93,6 +91,7 @@ app.get( '/bookmark', ( req, res ) => {
 
 app.post( '/bookmarks', jsonParser, ( req, res ) =>{
     
+    console.log(req.body);
     let title = req.body.title;
     let description = req.body.description;
     let url = req.body.url;
@@ -130,7 +129,6 @@ app.delete('/bookmark/:id', (req, res) =>{
     Bookmarks
     .deleteBookmark(id)
     .then(result => {
-        console.log(result);
         if(result.deletedCount > 0){
             return res.status( 200 ).end();
         }

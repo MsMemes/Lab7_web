@@ -1,0 +1,17 @@
+form {
+    border : 2px solid purple;
+    margin: 10px;
+    padding: 5px;
+}
+
+.item {
+    margin: 10px;
+    /* border : 3px solid salmon; */
+    padding: 5px;
+}
+
+.title {
+    background-color: #e6e6fa;
+    border-left: 10px solid purple;
+    padding-left: 5px;
+}

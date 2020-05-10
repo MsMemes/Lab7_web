@@ -5,15 +5,87 @@
 	<link rel="stylesheet" type="text/css" href="index.css">
 </head>
 <body>
-
-	<div>
-		Test
-	</div>
-	<section class="resultsGetAll">
+	
+	<form class="bookmarkTitle">
+        <div>
+            Get bookmark by title
+        </div>
+        <label >
+            Title:
+        </label>
+        <input type="text" id="SbookmarkTitle">
+        <button type="submit">
+            Search
+        </button>
+    </form>
+    <form class="addBookmark">
+        <div>
+            Add bookmark
+        </div>
+        <label for="AbookmarkT">
+            Title:
+        </label>
+        <input type="text" id="AbookmarkT">
+        <label for="AbookmarkD">
+            Description:
+        </label>
+        <input type="text" id="AbookmarkD">
+        <label for="AbookmarkU">
+            URL:
+        </label>
+        <input type="text" id="AbookmarkU">
+        <label for="AbookmarkR">
+            Rating:
+        </label>
+        <input type="number" id="AbookmarkR">
+        <button type="submit">
+            Add bookmark
+        </button>
+    </form>
+    <form class="deleteBookmark">
+        <div>
+            Delete bookmark
+        </div>
+        <label>
+            Id:
+        </label>
+        <input type="text" id="DbookmarkI">
+        <button type="submit">
+            Delete
+        </button>
+    </form>
+    <form class="update-bookmark-form">
+        <div>
+            Update bookmark
+        </div>
+        <label>
+            Id:
+        </label>
+        <input type="text" id="bookmarkID">
+        <label>
+            Title:
+        </label>
+        <input type="text" id="UbookmarkT">
+        <label>
+            Description:
+        </label>
+        <input type="text" id="UbookmarkD">
+        <label>
+            URL:
+        </label>
+        <input type="text" id="UbookmarkU">
+        <label>
+            Rating:
+        </label>
+        <input type="number" id="UbookmarkR">
+        <button type="submit">
+            Update
+        </button>
+	</form>
+	<section class="results">
 		
 	</section>
 
-
-	<script src="./index.js"></script>
+	<script src="index.js"></script>
 </body>
 </html>
